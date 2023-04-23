@@ -17,6 +17,7 @@ function App() {
     const [wordsToSay, setWordsToSay] = useState<string[]>([]);
     const [rate, setRate] = useState<number>(75);
     const [answer, setAnswer] = useState<number>(0);
+    const [numbers, setNumbers] = useState<number[]>([]);
 
 
     useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <div className='h-screen bg-gray-200 py-2'>
-        <h1 className='text-4xl text-center'>Speech Synthesis</h1>
+        <h1 className='text-4xl text-center'>Addition Asker</h1>
         <div className='grid grid-cols-2 gap-4 mt-4 p-4'>
             <div className='bg-sky-200 rounded-lg shadow-lg p-4'>
                 <h2 className='text-2xl text-center mb-2'>From</h2>
@@ -55,6 +56,7 @@ function App() {
             <button className='bg-blue-400 text-white rounded-lg shadow-lg p-4'  onClick={() => {
                 let temp_wordsToSay: string[] = [];
                 let temp_answer: number = 0;
+                let temp_numbers: number[] = [];
                 for (let i = 0; i < quantity; i++) {
                     const randomNumber = Math.round(Math.random() * (to - from)) + from;
                     if(i === quantity - 1){
@@ -64,9 +66,11 @@ function App() {
                         temp_wordsToSay.push('plus');
                     }
                     temp_answer += randomNumber;
+                    temp_numbers.push(randomNumber);
 
                 }
                 setAnswer(temp_answer);
+                setNumbers(temp_numbers);
                 setWordsToSay(temp_wordsToSay);
             }}>
                 Ask Problem
@@ -78,6 +82,10 @@ function App() {
                 Answer
             </button>
 
+        </div>
+
+        <div className='flex justify-center mt-4 p-4 text-2xl'>
+            {numbers.length > 0 && numbers.join(' + ')}
         </div>
     </div>
   )
