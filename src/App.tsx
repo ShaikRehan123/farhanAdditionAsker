@@ -317,11 +317,11 @@ function App() {
 
 
 
-        <div className={'modal ' + (showModal2 ? 'opacity-100' : 'opacity-0 pointer-events-none')}>
-            <div className="modal-content relative">
+        {/*<div className={'modal ' + (showModal2 ? 'opacity-100' : 'opacity-0 pointer-events-none')}>*/}
+        {/*    <div className="modal-content relative">*/}
 
-            </div>
-        </div>
+        {/*    </div>*/}
+        {/*</div>*/}
 
 
     </div>
