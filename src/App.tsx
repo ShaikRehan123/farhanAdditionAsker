@@ -36,8 +36,10 @@ function App() {
 
 
     }, [wordsToSay])
+    const [showModal2, setShowModal2] = useState<boolean>(false);
 
     useEffect(() => {
+        console.log('voice changed');
 
         window.speechSynthesis.onvoiceschanged = function() {
             const voices = window.speechSynthesis.getVoices();
@@ -69,7 +71,6 @@ function App() {
                 <h2 className='text-2xl text-center mb-2'>Type</h2>
                 <select className='w-full p-2 rounded-lg shadow-lg outline-none  focus:ring-2 focus:ring-blue-400' value={type} onChange={(e) => setType(e.target.value)}>
                     <option value="addition">Addition</option>
-                    <option value="subtraction">Subtraction</option>
                     <option value="mixed">Mixed</option>
                     <option value="own">Own</option>
                 </select>
@@ -145,38 +146,10 @@ function App() {
                     setAnswer(temp_answer);
                     setNumbers(temp_numbers);
                     setWordsToSay(temp_wordsToSay);
-                } else if(type === 'subtraction'){
-                    let temp_numbers: number[] = [];
-                    let highestNumber = to;
+                }else if(type === 'mixed'){
+                    const temp_wordsToSay: string[] = [];
                     let temp_answer = 0;
-                    const average = (from + to) / quantity - 1;
-                    for (let i = 0; i < quantity; i++) {
-                        const randomNumber = Math.round(Math.random() * (average - from)) + from;
-                        temp_numbers.push(randomNumber);
-                        temp_answer += randomNumber;
-                    }
-                    const shuffleArray = (arr:number[]) => arr.sort(() => 0.5 - Math.random());
-
-                    const shuffledNumbers = shuffleArray(temp_numbers);
-
-                    let temp_wordsToSay: string[] = [];
-                    temp_wordsToSay.push(highestNumber.toString());
-                    temp_wordsToSay.push('minus');
-                    for (let i = 0; i < quantity; i++) {
-                        if(i === quantity - 1){
-                            temp_wordsToSay.push(shuffledNumbers[i].toString());
-                        }else{
-                            temp_wordsToSay.push(shuffledNumbers[i].toString());
-                            temp_wordsToSay.push('minus');
-                        }
-                    }
-                    setAnswer(highestNumber - temp_answer);
-                    setNumbers([highestNumber, ...shuffledNumbers]);
-                    setWordsToSay(temp_wordsToSay);
-                } else if(type == 'mixed'){
-                    let temp_wordsToSay: string[] = [];
-                    let temp_answer: number = 0;
-                    let temp_numbers: number[] = [];
+                    const temp_numbers: number[] = [];
                     for (let i = 0; i < quantity; i++) {
                         if(i == 0) {
                             // first number should always be addition
@@ -185,7 +158,7 @@ function App() {
                             temp_answer += randomNumber;
                             temp_numbers.push(randomNumber);
                         }else {
-                            let type = Math.round(Math.random());
+                            const type = Math.round(Math.random());
                             if(type == 0){
                                 // addition
                                 const randomNumber = Math.round(Math.random() * (to - from)) + from;
@@ -194,8 +167,10 @@ function App() {
                                 temp_answer += randomNumber;
                                 temp_numbers.push(randomNumber);
                             }else{
-                                const average = (1 + temp_answer    ) / (quantity - i);
-                                const randomNumber = Math.round(Math.random() * (average - from)) + from;
+                                let randomNumber = Math.round(Math.random() * (to - from)) + from;
+                                while (randomNumber == 0 || (temp_answer - randomNumber) < 0) {
+                                    randomNumber = Math.round(Math.random() * (to - from)) + from;
+                                }
                                 temp_wordsToSay.push('minus');
                                 temp_wordsToSay.push(randomNumber.toString());
                                 temp_answer -= randomNumber;
@@ -206,7 +181,13 @@ function App() {
                     setAnswer(temp_answer);
                     setNumbers(temp_numbers);
                     setWordsToSay(temp_wordsToSay);
-                } else if (type == 'own') {
+                }
+
+
+
+
+
+                else if (type == 'own') {
 
                     function extractNumbers(expression:any) {
                         const numbersAndSymbols = expression.split(/([\+\-])/);
@@ -332,7 +313,15 @@ function App() {
 
         </div>
 
+    {/*    modal for showing num bers*/}
 
+
+
+        <div className={'modal ' + (showModal2 ? 'opacity-100' : 'opacity-0 pointer-events-none')}>
+            <div className="modal-content relative">
+
+            </div>
+        </div>
 
 
     </div>
