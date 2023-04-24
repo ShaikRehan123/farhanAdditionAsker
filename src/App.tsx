@@ -36,7 +36,7 @@ function App() {
 
 
     }, [wordsToSay])
-    const [showModal2, setShowModal2] = useState<boolean>(false);
+    // const [showModal2, setShowModal2] = useState<boolean>(false);
 
     useEffect(() => {
         console.log('voice changed');
