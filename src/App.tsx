@@ -32,7 +32,7 @@ function App() {
   };
 
   const [from, setFrom] = useState<number>(1);
-  const [to, setTo] = useState<number>(99);
+  const [to, setTo] = useState<number>(9);
   const [quantity, setQuantity] = useState<number>(5);
 
   const [wordsToSay, setWordsToSay] = useState<string[]>([]);
@@ -46,7 +46,7 @@ function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showModal2, setShowModal2] = useState<boolean>(false);
   const [currentSpeakingWord, setCurrentSpeakingWord] = useState<string>("");
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>("#ccc");
   useEffect(() => {
     if (wordsToSay.length > 0) {
       setShowModal2(true);
