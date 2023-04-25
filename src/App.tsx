@@ -24,6 +24,7 @@ function App() {
       };
       speech.onend = function () {
         setShowModal2(false);
+        setCurrentSpeakingWord("");
       };
     }
 
