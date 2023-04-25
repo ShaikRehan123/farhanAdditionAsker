@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { animated, useSpring } from "@react-spring/web";
 
 function App() {
   const speechMessage = (message: string, rate: number) => {
@@ -22,7 +21,7 @@ function App() {
       setCurrentSpeakingWord(word);
     };
 
-    speech.onend = function (event) {
+    speech.onend = function () {
       setShowModal2(false);
     };
     window.speechSynthesis.speak(speech);
@@ -386,7 +385,7 @@ function App() {
         }
       >
         <div className="relative full_screen_modal_content">
-          <animated.p
+          <p
             className={"text-center text-[200px] font-bold  "}
             // style={fadeInStyle}
             style={{
@@ -395,7 +394,7 @@ function App() {
             }}
           >
             {currentSpeakingWord.replace("minus", "-").replace("plus", "+")}
-          </animated.p>
+          </p>
           <img src="star.png" className="absolute w-40 h-40 top-5 left-5" />
           <img src="star.png" className="absolute w-40 h-40 top-5 right-5" />
           <img src="star.png" className="absolute w-40 h-40 bottom-5 left-5" />
