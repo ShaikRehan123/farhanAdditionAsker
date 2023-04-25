@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const speechMessage = (message: string, rate: number) => {
+  const speechMessage = (message: string, rate: number, type = "question") => {
     if (message == "Stop") {
       window.speechSynthesis.cancel();
       return;
@@ -13,17 +13,20 @@ function App() {
     speech.pitch = 1;
     speech.lang = "en-US";
     speech.voice = voice;
-    speech.onboundary = function (event) {
-      const fromIndex = event.charIndex;
-      const toIndex = event.charIndex + event.charLength;
-      const word = message.substring(fromIndex, toIndex);
-      console.log(word);
-      setCurrentSpeakingWord(word);
-    };
 
-    speech.onend = function () {
-      setShowModal2(false);
-    };
+    if (type === "question") {
+      speech.onboundary = function (event) {
+        const fromIndex = event.charIndex;
+        const toIndex = event.charIndex + event.charLength;
+        const word = message.substring(fromIndex, toIndex);
+        console.log(word);
+        setCurrentSpeakingWord(word);
+      };
+      speech.onend = function () {
+        setShowModal2(false);
+      };
+    }
+
     window.speechSynthesis.speak(speech);
   };
 
@@ -299,7 +302,7 @@ function App() {
           className="p-4 ml-4 text-white bg-green-400 rounded-lg shadow-lg"
           onClick={() => {
             window.speechSynthesis.cancel();
-            speechMessage(answer.toString(), rate);
+            speechMessage(answer.toString(), rate, "answer");
             setShowModal(true);
           }}
         >
