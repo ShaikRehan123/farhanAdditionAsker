@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.modal{
-    @apply fixed top-0 left-0 w-full h-full flex items-center justify-center;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000;
+.modal {
+  @apply fixed top-0 left-0 flex items-center justify-center w-full h-full;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
-.modal-content{
-    @apply bg-white p-5 rounded-lg;
-    width: 500px;
+.modal-content {
+  @apply p-5 bg-white rounded-lg;
+  width: 500px;
+}
+
+.full_screen_modal {
+  @apply fixed top-0 left-0 w-screen h-screen;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.full_screen_modal_content {
+  @apply flex flex-col items-center justify-center w-full h-full p-5 bg-black rounded-lg;
 }
