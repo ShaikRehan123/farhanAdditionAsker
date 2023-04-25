@@ -318,6 +318,7 @@ function App() {
         <button
           className="p-4 ml-4 text-white bg-yellow-400 rounded-lg shadow-lg"
           onClick={() => {
+            setShowModal2(true);
             speechMessage(wordsToSay.join(" "), rate);
           }}
         >
