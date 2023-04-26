@@ -189,9 +189,9 @@ function App() {
           onClick={() => {
             window.speechSynthesis.cancel();
             if (type === "addition") {
-              let temp_wordsToSay: string[] = [];
-              let temp_answer: number = 0;
-              let temp_numbers: number[] = [];
+              const temp_wordsToSay: string[] = [];
+              let temp_answer = 0;
+              const temp_numbers: number[] = [];
               for (let i = 0; i < quantity; i++) {
                 const randomNumber =
                   Math.round(Math.random() * (to - from)) + from;
@@ -250,8 +250,9 @@ function App() {
               setNumbers(temp_numbers);
               setWordsToSay(temp_wordsToSay);
             } else if (type == "own") {
+              // eslint-disable-next-line no-inner-declarations
               function extractNumbers(expression: any) {
-                const numbersAndSymbols = expression.split(/([\+\-])/);
+                const numbersAndSymbols = expression.split(/([+-])/);
                 const numbers = [];
 
                 for (let i = 0; i < numbersAndSymbols.length; i++) {
@@ -275,8 +276,8 @@ function App() {
               }
 
               const numbers = extractNumbers(ownProblem);
-              let temp_wordsToSay: string[] = [];
-              let temp_answer: number = 0;
+              const temp_wordsToSay: string[] = [];
+              let temp_answer = 0;
               console.log(numbers);
 
               for (let i = 0; i < numbers.length; i++) {
