@@ -40,7 +40,7 @@ function App() {
   const [answer, setAnswer] = useState<number>(0);
   const [numbers, setNumbers] = useState<number[]>([]);
   const [type, setType] = useState<string>("addition");
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   // const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
   const [ownProblem, setOwnProblem] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
