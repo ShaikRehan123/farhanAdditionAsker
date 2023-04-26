@@ -14,7 +14,7 @@
 }
 
 .full_screen_modal {
-  @apply fixed top-0 left-0 w-screen h-screen;
+  @apply fixed top-0 left-0 flex items-center justify-center w-full h-full;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }

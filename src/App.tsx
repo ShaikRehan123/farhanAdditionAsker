@@ -60,9 +60,11 @@ function App() {
 
     window.speechSynthesis.onvoiceschanged = function () {
       const voices = window.speechSynthesis.getVoices();
-      console.log(voices);
-      setVoices(voices);
-      setVoice(voices[0]);
+      const uniqueVoices = voices.filter((voice, index) => {
+        return voices.findIndex((v) => v.name === voice.name) === index;
+      });
+
+      setVoices(uniqueVoices);
     };
   }, []);
 
@@ -104,25 +106,25 @@ function App() {
           </select>
         </div>
 
-        <div className="p-4 rounded-lg shadow-lg bg-sky-200">
-          <h2 className="mb-2 text-2xl text-center">Voice</h2>
-          <select
-            className="w-full p-2 rounded-lg shadow-lg outline-none focus:ring-2 focus:ring-blue-400"
-            value={voice?.name}
-            onChange={(e) => {
-              const voice = voices.find(
-                (voice) => voice.name === e.target.value
-              );
-              setVoice(voice || null);
-            }}
-          >
-            {voices.map((voice) => (
-              <option key={voice.name} value={voice.name}>
-                {voice.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        {/*<div className="p-4 rounded-lg shadow-lg bg-sky-200">*/}
+        {/*  <h2 className="mb-2 text-2xl text-center">Voice</h2>*/}
+        {/*  <select*/}
+        {/*    className="w-full p-2 rounded-lg shadow-lg outline-none focus:ring-2 focus:ring-blue-400"*/}
+        {/*    value={voice?.name}*/}
+        {/*    onChange={(e) => {*/}
+        {/*      const voice = voices.find(*/}
+        {/*        (voice) => voice.name === e.target.value*/}
+        {/*      );*/}
+        {/*      setVoice(voice || null);*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    {voices.map((voice) => (*/}
+        {/*      <option key={voice.name} value={voice.name}>*/}
+        {/*        {voice.name}*/}
+        {/*      </option>*/}
+        {/*    ))}*/}
+        {/*  </select>*/}
+        {/*</div>*/}
 
         <div className="p-4 rounded-lg shadow-lg bg-sky-200">
           <h2 className="mb-2 text-2xl text-center">Color</h2>
@@ -173,7 +175,7 @@ function App() {
         <div className="col-span-2 p-4 rounded-lg shadow-lg bg-sky-200">
           <h2 className="mb-2 text-2xl text-center">Problem</h2>
           <input
-            type="text"
+            type={'text'}
             className="w-full p-2 rounded-lg shadow-lg outline-none focus:ring-2 focus:ring-blue-400"
             value={ownProblem}
             onChange={(e) => setOwnProblem(e.target.value)}
