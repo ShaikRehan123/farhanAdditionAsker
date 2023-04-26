@@ -400,10 +400,10 @@ function App() {
           >
             {currentSpeakingWord.replace("minus", "-").replace("plus", "+")}
           </p>
-          <img src="star.png" className="absolute w-40 h-40 top-5 left-5" />
+          {/* <img src="star.png" className="absolute w-40 h-40 top-5 left-5" />
           <img src="star.png" className="absolute w-40 h-40 top-5 right-5" />
           <img src="star.png" className="absolute w-40 h-40 bottom-5 left-5" />
-          <img src="star.png" className="absolute w-40 h-40 bottom-5 right-5" />
+          <img src="star.png" className="absolute w-40 h-40 bottom-5 right-5" /> */}
         </div>
       </div>
     </div>
