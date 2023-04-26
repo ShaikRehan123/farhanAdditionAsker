@@ -12,7 +12,7 @@ function App() {
     speech.rate = rate / 100;
     speech.pitch = 1;
     speech.lang = "en-US";
-    speech.voice = voice;
+    // speech.voice = voice;
 
     if (type === "question") {
       speech.onboundary = function (event) {
